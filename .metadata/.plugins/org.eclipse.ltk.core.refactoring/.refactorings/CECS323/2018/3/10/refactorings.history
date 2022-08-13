@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;lab_1.Stopwatch.java&apos; to &apos;StopWatch.java&apos;&#x0D;&#x0A;- Original project: &apos;CECS323&apos;&#x0D;&#x0A;- Original element: &apos;lab_1.Stopwatch.java&apos;&#x0D;&#x0A;- Renamed element: &apos;lab_1.StopWatch.java&apos;" description="Rename compilation unit &apos;Stopwatch.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;lab_1{Stopwatch.java" name="StopWatch.java" references="false" stamp="1520270497634" version="1.0"/>
+</session>

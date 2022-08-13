@@ -1,0 +1,106 @@
+package lab_2;
+import java.util.*;
+
+import lab_1.ArrayUtil;
+public class Lab2 {
+	private static Scanner in = new Scanner(System.in);
+	public static void main(String args[]) {
+		//1
+		System.out.print("Enter a number\n>>");
+		int n = in.nextInt();
+		//2	
+		int[] a = ArrayUtil.randomIntArray(n);
+		for(int i: a) {
+			System.out.print(i + " ");
+		}
+		System.out.println();
+		//3
+		int[] b = quick_sort(a,0,a.length-1);
+		for(int i:b) {
+			System.out.print(i + " ");
+		}
+		System.out.println();
+		//4
+		int[] c = insertion_sort(a);
+		for(int i:c) {
+			System.out.print(i + " ");
+		}
+		System.out.println();
+		//5
+		//5a - average running time of quick sort
+		long quickSortTotalTime = 0;
+		long startTime = 0;
+		long endTime = 0;
+		int iter = 100;
+		n = 10000;
+		for(int i = 0; i < iter; i++)
+		{
+			a = ArrayUtil.randomIntArray(n);
+			startTime = System.nanoTime();
+			quick_sort(a,0,a.length-1);
+			endTime = System.nanoTime();
+			quickSortTotalTime += endTime - startTime;
+		}
+		long quickSortAverageTime = quickSortTotalTime/iter;
+		System.out.println("Average quick sort running time: " + quickSortAverageTime + " nanoseconds");
+
+		//5b - average running time of insertion sort
+		long insertionSortTotalTime = 0;
+		for(int i = 0; i < iter; i++)
+		{
+			a = ArrayUtil.randomIntArray(n);
+			startTime = System.nanoTime();
+			insertion_sort(a);
+			endTime = System.nanoTime();
+			insertionSortTotalTime += endTime - startTime;
+		}
+		long insertionSortAverageTime = insertionSortTotalTime/iter;
+		System.out.println("Average insertion sort running time: " + insertionSortAverageTime + " nanoseconds");
+
+		//6 - number of instructions in 1 second using insertion sort 
+		double insertionSingle = insertionSortAverageTime/Math.pow(n, 2);
+		double totalInstructions = (1/insertionSingle) * (Math.pow(10, 9));
+		System.out.println("Total number of instructions in 1 second: " + totalInstructions + " instructions");
+	}
+
+	public static int[] insertion_sort(int[] a) {
+		int size = a.length;
+		for(int i = 1; i < size; i++) {
+			int k = a[i];
+			int j = i -1;
+			while(j>=0 && a[j] > k) {
+				a[j+1] = a[j];
+				j = j-1;
+			}
+			a[j+1] = k;
+		}
+		return a;
+	}
+
+	public static int[] quick_sort(int a[], int low, int high){
+		if (low < high){
+			int p = partition(a, low, high);
+			quick_sort(a, low, p-1);
+			quick_sort(a, p+1, high);
+		}
+		return a;
+	}
+
+	public static int partition(int a[], int low, int high){
+		int pivot = a[high]; 
+		int i = (low-1); // index of smaller element
+		for (int j=low; j<high; j++){
+			if (a[j] <= pivot){
+				i++;
+				int temp = a[i];
+				a[i] = a[j];
+				a[j] = temp;
+			}
+		}
+		int temp = a[i+1];
+		a[i+1] = a[high];
+		a[high] = temp;
+
+		return i+1;
+	}
+}

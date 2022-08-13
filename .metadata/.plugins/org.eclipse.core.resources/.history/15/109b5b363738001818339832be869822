@@ -1,0 +1,63 @@
+package lab_2;
+import java.util.*;
+
+import lab_1.ArrayUtil;
+public class Lab2 {
+	private static Scanner in = new Scanner(System.in);
+	public static void main(String args[]) {
+		System.out.print("Enter a number\n>>");
+		int n = in.nextInt();
+		int[] a = ArrayUtil.randomIntArray(n);
+		
+		int[] b = quick_sort(a,0,a.length-1);
+		for(int i:b) {
+			System.out.print(i + " ");
+		}
+		
+		int[] c = insertion_sort(a);
+		for(int i:c) {
+			System.out.print(i + " ");
+		}
+	}
+	
+	public static int[] insertion_sort(int[] a) {
+		int size = a.length;
+		for(int i = 1; i < size; i++) {
+			int k = a[i];
+			int j = i -1;
+			while(j>=0 && a[j] > k) {
+				a[j+1] = a[j];
+				j = j-1;
+			}
+			a[j+1] = k;
+		}
+		return a;
+	}
+	
+	public static int[] quick_sort(int a[], int low, int high){
+        if (low < high){
+            int p = partition(a, low, high);
+            quick_sort(a, low, p-1);
+            quick_sort(a, p+1, high);
+        }
+        return a;
+    }
+	
+	public static int partition(int a[], int low, int high){
+        int pivot = a[high]; 
+        int i = (low-1); // index of smaller element
+        for (int j=low; j<high; j++){
+            if (a[j] <= pivot){
+                i++;
+                int temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+        int temp = a[i+1];
+        a[i+1] = a[high];
+        a[high] = temp;
+ 
+        return i+1;
+    }
+}

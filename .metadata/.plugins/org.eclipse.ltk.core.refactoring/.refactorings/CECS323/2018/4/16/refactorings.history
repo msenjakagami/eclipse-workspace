@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;ArrayUtil.java&apos; to &apos;CECS323/src/lab_5&apos;&#x0D;&#x0A;- Original project: &apos;CECS323&apos;&#x0D;&#x0A;- Destination element: &apos;CECS323/src/lab_5&apos;&#x0D;&#x0A;- Original element: &apos;lab_1.ArrayUtil.java&apos;" description="Copy compilation unit" destination="/src&lt;lab_5" element1="/src&lt;lab_1{ArrayUtil.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1524075358921" units="1" version="1.0"/>
+</session>

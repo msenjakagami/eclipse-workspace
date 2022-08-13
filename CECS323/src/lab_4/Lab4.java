@@ -1,0 +1,94 @@
+package lab_4;
+
+import java.util.Scanner;
+
+import lab_3.ArrayUtil;
+
+public class Lab4 {
+
+	public static Scanner in = new Scanner(System.in);
+	
+	public static void main(String args[]) {
+		System.out.print("Enter a number\n>>");
+		int n = in.nextInt();
+		int[] a = ArrayUtil.randomIntArray(n);
+		System.out.println();
+		for(int i : a) {
+			System.out.print(i + " , ");
+		}
+		System.out.println();
+		int mss1 = MSS(a);
+		int mss2 = MSS2(a, 0, n-1);
+		System.out.println();
+		System.out.println("O(n) MSS: " + mss1);
+		System.out.println("O(nlogn) MSS: " + mss2);
+	}
+
+	public static int MSS(int[] a) {
+		int sum = 0;
+		int max = 0;
+		for(int i = 0; i < a.length; i++) {
+			sum+=a[i];
+			if(sum > max) {
+				max = sum;
+			}
+			if(sum < 0) {
+				sum = 0;
+			}
+			//System.out.print(max + ", ");
+		}
+		System.out.println();
+		return max;
+	}
+
+	//nlogn
+	public static int MSS2(int[] a, int left, int right) {
+		if(left == right) {
+			return a[left];
+		}
+		if(right == left+1) {
+			return max(a[left], a[right], a[left]+a[right]);
+		}
+		int mid =(left+right)/2;
+		int mss_left = MSS2(a,left,mid);
+		int mss_right = MSS2(a,mid+1,right);
+		int mss_mid = maxSumHelp(a, left, mid, right);
+		//System.out.print(mss_left + "|" + mss_right + ", ");
+		return max(mss_left, mss_right, mss_mid);
+
+	}
+
+
+	private static int max(int x, int y, int z) {
+		if(x > y && x > z) {
+			return x;
+		}
+		else if(y > x && y > z) {
+			return y;
+		}
+		else {
+			return z;
+		}
+	}
+	private static int maxSumHelp(int arr[], int l, int m, int h){
+		int sum = 0;
+		int left_sum = -101;
+		for (int i = m; i >= l; i--)
+		{
+			sum += arr[i];
+			if (sum > left_sum)
+				left_sum = sum;
+		}
+
+		sum = 0;
+		int right_sum = -101;
+		for (int i = m + 1; i <= h; i++)
+		{
+			sum += arr[i];
+			if (sum > right_sum)
+				right_sum = sum;
+		}
+
+		return left_sum + right_sum;
+	}
+}

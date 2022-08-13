@@ -1,0 +1,23 @@
+package lab_5;
+
+import lab_1.ArrayUtil;
+import java.util.*;
+public class Lab5 {
+	private static Scanner in = new Scanner(System.in);
+	public static void main(String[] args){
+		
+		System.out.print("Enter a number\n>>");
+		int n = in.nextInt();
+		int[] a = ArrayUtil.randomIntArray(n);
+		
+		System.out.println("Random array:");
+		for(int i: a) {
+			System.out.print(i + " ");
+		}
+
+		System.out.println("\nEnter k:");
+		int k = in.nextInt();
+		System.out.println("Kth least element: " + findK(a,0,a.length-1,k));
+		in.close();
+	}
+}
